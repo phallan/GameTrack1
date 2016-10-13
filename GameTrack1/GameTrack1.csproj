@@ -124,10 +124,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contoso\Courses.aspx" />
-    <Content Include="Contoso\Departments.aspx" />
-    <Content Include="Contoso\Enrollments.aspx" />
-    <Content Include="Contoso\MainMenu.aspx" />
+    <Content Include="Assets\images\1logo.PNG" />
+    <Content Include="Assets\images\basketball.jpg" />
+    <Content Include="Assets\images\cricket.jpg" />
+    <Content Include="Assets\images\hockey.jpg" />
+    <Content Include="Assets\images\tennis.jpg" />
+    <Content Include="Game\AddResult.aspx" />
+    <Content Include="Game\Basketball.aspx" />
+    <Content Include="Game\Cricket.aspx" />
+    <Content Include="Game\MainMenu.aspx" />
+    <Content Include="Game\Hockey.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
@@ -173,8 +179,9 @@
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
-    <Content Include="Contoso\StudentDetails.aspx" />
-    <Content Include="Contoso\Students.aspx" />
+    <Content Include="Game\StudentDetails.aspx" />
+    <Content Include="Game\Students.aspx" />
+    <Content Include="Game\Tennis.aspx" />
     <Content Include="Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
@@ -186,6 +193,20 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Game\AddResult.aspx.cs">
+      <DependentUpon>AddResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Game\AddResult.aspx.designer.cs">
+      <DependentUpon>AddResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Basketball.aspx.cs">
+      <DependentUpon>Basketball.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Game\Basketball.aspx.designer.cs">
+      <DependentUpon>Basketball.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,18 +214,18 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contoso\Courses.aspx.cs">
-      <DependentUpon>Courses.aspx</DependentUpon>
+    <Compile Include="Game\Cricket.aspx.cs">
+      <DependentUpon>Cricket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contoso\Courses.aspx.designer.cs">
-      <DependentUpon>Courses.aspx</DependentUpon>
+    <Compile Include="Game\Cricket.aspx.designer.cs">
+      <DependentUpon>Cricket.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contoso\MainMenu.aspx.cs">
+    <Compile Include="Game\MainMenu.aspx.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contoso\MainMenu.aspx.designer.cs">
+    <Compile Include="Game\MainMenu.aspx.designer.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
@@ -214,22 +235,15 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contoso\Departments.aspx.cs">
-      <DependentUpon>Departments.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contoso\Departments.aspx.designer.cs">
-      <DependentUpon>Departments.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contoso\Enrollments.aspx.cs">
-      <DependentUpon>Enrollments.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contoso\Enrollments.aspx.designer.cs">
-      <DependentUpon>Enrollments.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Hockey.aspx.cs">
+      <DependentUpon>Hockey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Game\Hockey.aspx.designer.cs">
+      <DependentUpon>Hockey.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -266,24 +280,30 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="Contoso\StudentDetails.aspx.cs">
+    <Compile Include="Game\StudentDetails.aspx.cs">
       <DependentUpon>StudentDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contoso\StudentDetails.aspx.designer.cs">
+    <Compile Include="Game\StudentDetails.aspx.designer.cs">
       <DependentUpon>StudentDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contoso\Students.aspx.cs">
+    <Compile Include="Game\Students.aspx.cs">
       <DependentUpon>Students.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contoso\Students.aspx.designer.cs">
+    <Compile Include="Game\Students.aspx.designer.cs">
       <DependentUpon>Students.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Tennis.aspx.cs">
+      <DependentUpon>Tennis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Game\Tennis.aspx.designer.cs">
+      <DependentUpon>Tennis.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -296,7 +316,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6026</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

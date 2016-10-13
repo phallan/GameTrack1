@@ -23,13 +23,13 @@ namespace GameTrack1
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     // show the contoso content area
-                    ContosoPlaceHolder.Visible = true;
+                    GamePlaceHolder.Visible = true;
                     PublicPlaceHolder.Visible = false;
                 }
                 else
                 {
                     // only show login and register
-                    ContosoPlaceHolder.Visible = false;
+                    GamePlaceHolder.Visible = false;
                     PublicPlaceHolder.Visible = true;
                 }
 
@@ -49,12 +49,7 @@ namespace GameTrack1
                 case "Students":
                     students.Attributes.Add("class", "active");
                     break;
-                case "Courses":
-                    courses.Attributes.Add("class", "active");
-                    break;
-                case "Departments":
-                    departments.Attributes.Add("class", "active");
-                    break;
+               
                 case "About":
                     about.Attributes.Add("class", "active");
                     break;

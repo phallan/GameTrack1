@@ -39,7 +39,7 @@ namespace GameTrack1
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
 
                 // redirect the user to the main menu
-                Response.Redirect("~/Contoso/MainMenu.aspx");
+                Response.Redirect("~/Game/MainMenu.aspx");
             }
             else // user is not found
             {
