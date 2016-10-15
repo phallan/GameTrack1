@@ -89,3 +89,14 @@ body {
     border: 1px solid #dddddd;
     cursor: pointer;
 }
+
+
+
+.nav { 
+    background-color:#20B2AA;
+    color:#020c0b !important;
+}
+a:hover{
+    background-color:#c8f5f3;
+    color:#0e4e4b	;
+}

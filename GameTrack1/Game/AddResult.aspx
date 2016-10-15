@@ -9,7 +9,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="WeekTextBox">Week</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="WeekTextBoxx" 
+                    <asp:TextBox runat="server" CssClass="form-control" ID="WeekTextBox" 
                         placeholder="Week" required="true"></asp:TextBox>
                 </div>
 
