@@ -2,104 +2,102 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
+
+
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GameTrack1.Models;
+
 using System.Web.ModelBinding;
+using GameTrack1.Models;
 
 namespace GameTrack1
 {
     public partial class AddResult : System.Web.UI.Page
     {
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if ((!IsPostBack) && (Request.QueryString.Count > 0))
             {
-                this.GetName();
+                this.GetGame();
             }
         }
 
-        protected void GetName()
+       
+        protected void CancelButton_Click(object sender, EventArgs e)
         {
 
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void GetGame()
+        {
             // populate the form with existing data from db
-            
+            var game =Request.QueryString["GameName"];
+            var week = Convert.ToInt32(Request.QueryString["Week"]);
 
             // connect to the EF DB
             using (GameTrackerContext db = new GameTrackerContext())
             {
-                string week =Request.QueryString["Week"];
-                // populate a student object instance with the StudentID from 
-                // the URL parameter
-                Models.Game updatedGame = (from GameRecords in db.Games
-                                           where GameRecords.week == week
-                                           select GameRecords).FirstOrDefault();
+                // get todolist data from the query string
+                Models.Basketball newBasketball = (from x in db.Basketballs
+                                    where x.Week == week
+                                    select x).FirstOrDefault();
 
-                // map the student properties to the form control
-                if (updatedGame != null)
+                //if not emptyfill in the previous data
+                if (newBasketball != null)
                 {
-               
-                    TeamFirstTextBox.Text =updatedGame.firstTeam ;
-                    TeamSecondTextBox.Text = updatedGame.secondTeam;
-                    TeamFirstTextBox.Text = updatedGame.firstTeam;
-                    ScoreFirstTextBox.Text = updatedGame.scoreFirst;
-                    ScoreSecondTextBox.Text = updatedGame.scoreSecond;
-                    WinnerTextBox.Text = updatedGame.winner;
-
+                    var x = "Basketball";
+                    x = newBasketball.GameName;
+                    TeamFirstTextBox.Text = newBasketball.TeamOne;
+                    TeamSecondTextBox.Text = newBasketball.TeamTwo;
+                    Convert.ToInt32(ScoreFirstTextBox.Text) = newBasketball.ScoreOne;
+                    Convert.ToInt32(ScoreSecondTextBox.Text) = newBasketball.ScoreTwo;
+                    WinnerTextBox.Text = newBasketball.Winner;
                 }
-            }
-        }
-        protected void CancelButton_Click(object sender, EventArgs e)
-        {
-         
-            Response.Redirect("~/Game/Basketball.aspx");
-        }
 
+            }
+            }
+        
         protected void SaveButton_Click(object sender, EventArgs e)
         {
-            // Use EF to conect to the server
             using (GameTrackerContext db = new GameTrackerContext())
             {
-                // use the student model to create a new student object and 
+                var Game = "";
+                // create new todo object
                 // save a new record
-
-                Models.Game updatedGame = new Models.Game();
-
-                string week= "";
-
-                if (Request.QueryString.Count > 0) // our URL has a STUDENTID in it
+              
                 {
-                    // get the id from the URL
-                     week= (Request.QueryString["StudentID"]);
+                    Game = Request.QueryString["GameName"];
+                    switch (Game)
+                    {
+                        case "Basketball":
+                            Models.Basketball newBasketball = new Models.Basketball();
 
-                    // get the current student from EF db
-                    updatedGame = (from x in db.Games
-                                  where x.week == week
-                                  select x).FirstOrDefault();
+                            if (Request.QueryString.Count > 0)
+                            {
+                                newBasketball.GameName = "Basketball";
+                                newBasketball.TeamOne = TeamFirstTextBox.Text;
+                                newBasketball.TeamTwo = TeamSecondTextBox.Text;
+                                newBasketball.ScoreOne = Convert.ToInt32(ScoreFirstTextBox.Text);
+                                newBasketball.ScoreTwo = Convert.ToInt32(ScoreSecondTextBox.Text);
+                                newBasketball.Winner = WinnerTextBox.Text;
+                            }
+                            if (Game == "")
+                            {
+                                db.Basketballs.Add(newBasketball);
+                            }
+                            Response.Redirect("Basketball.aspx");
+                            break;
+
+                    }
                 }
 
-                // add form data to the new student record
 
-
-           updatedGame.firstTeam = TeamFirstTextBox.Text;
-                 updatedGame.secondTeam= TeamSecondTextBox.Text;
-                  updatedGame.firstTeam=TeamFirstTextBox.Text;
-                updatedGame.scoreFirst =ScoreFirstTextBox.Text;
-                  updatedGame.scoreSecond=ScoreSecondTextBox.Text;
-                 updatedGame.winner= WinnerTextBox.Text;
-
-
-                // use LINQ to ADO.NET to add / insert new student into the db
-
-                if (week == "")
-                {
-                    db.Games.Add(updatedGame);
-                }
-
-                db.SaveChanges();
-
-                // Redirect back to the updated students page
-                Response.Redirect("~/Game/Basketball.aspx");
             }
+        }
+    }
 }

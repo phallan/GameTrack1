@@ -8,50 +8,17 @@ namespace GameTrack1.Models
     public partial class GameTrackerContext : DbContext
     {
         public GameTrackerContext()
-            : base("name=GameTrackerConnection")
+            : base("name=GameTrackerContext")
         {
         }
 
-        public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<Month> Months { get; set; }
+        public virtual DbSet<Basketball> Basketballs { get; set; }
+        public virtual DbSet<Cricket> Crickets { get; set; }
+        public virtual DbSet<Hockey> Hockeys { get; set; }
+        public virtual DbSet<Tenni> Tennis { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Game>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Game>()
-                .Property(e => e.week)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Game>()
-                .Property(e => e.firstTeam)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Game>()
-                .Property(e => e.secondTeam)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Game>()
-                .Property(e => e.scoreFirst)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Game>()
-                .Property(e => e.scoreSecond)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Game>()
-                .Property(e => e.winner)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Month>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Month>()
-                .HasOptional(e => e.Game)
-                .WithRequired(e => e.Month);
         }
     }
 }

@@ -15,78 +15,73 @@ namespace GameTrack1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            // if loading the page for the first time
-            // populate the student grid
             if (!IsPostBack)
             {
-                Session["SortColumn"] = "name"; // default sort column
+                Session["SortColumn"] = "TodoId"; // default sort column
                 Session["SortDirection"] = "ASC";
 
-                // Get the student data
-                this.GetName();
+                // Get data
+                this.GetGame();
+
             }
         }
-
-               private void GetName()
+        private void GetGame()
         {
-            // connect to EF DB
             using (GameTrackerContext db = new GameTrackerContext())
             {
                 string SortString = Session["SortColumn"].ToString() + " " +
                     Session["SortDirection"].ToString();
 
-                // query the Student Table using EF and LINQ
-                var Basketball = (from a in db.Games
-                                  where a.name == "Basketball"
-                                  select a);
+                // query todo table using EF and LINQ
+                var bb = (from b in db.Basketballs
+                             select b);
 
-                // bind the result to the Students GridView
-                GameGridView.DataSource = Basketball.AsQueryable().OrderBy(SortString).ToList();
-           GameGridView.DataBind();
+                // bind the result to the todo GridView
+                GameGridView.DataSource = bb.AsQueryable().OrderBy(SortString).ToList();
+                GameGridView.DataBind();
             }
+        }
+
+        protected void GameGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int selectedRow = e.RowIndex;
+
+
+            int Week = Convert.ToInt32(GameGridView.DataKeys[selectedRow].Values["Week"]);
+
+
+            using (GameTrackerContext db = new GameTrackerContext())
+            {
+
+                Models.Basketball deletedbb = (from todoR in db.Basketballs
+                                    where todoR.Week == Week
+                                    select todoR).FirstOrDefault();
+
+
+                db.Basketballs.Remove(deletedbb);
+
+
+                db.SaveChanges();
+
+
+                this.GetGame();
+            }
+        }
+
+        protected void PageSizeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GameGridView.PageSize = Convert.ToInt32(PageSizeDropDownList.SelectedValue);
+
+            // refresh the GridView
+            this.GetGame();
         }
 
         protected void GameGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
-            // Set the new page number
             GameGridView.PageIndex = e.NewPageIndex;
 
             // refresh the Gridview
-            this.GetName();
-
-        }
-       
-
-       protected void GameGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-
-            // store which row was clicked
-            int selectedRow = e.RowIndex;
-            
-            // get the selected StudentID using the Grid's DataKey collection
-            String Week = GameGridView.DataKeys[selectedRow].Values["week"] + "";
-
-            // use EF and LINQ to find the selected student in the DB and remove it
-            using (GameTrackerContext db = new GameTrackerContext())
-            {
-               
-                // create object ot the student clas and store the query inside of it
-             Models.Game deletedGame    = (from GameRecords in db.Games
-                                     where GameRecords.week == Week
-                                     select GameRecords).FirstOrDefault();
-
-                // remove the selected student from the db
-                db.Games.Remove(deletedGame);
-               
-                // save my changes back to the db
-                db.SaveChanges();
-
-                // refresh the grid
-                this.GetName();
-
-            }
+            this.GetGame();
         }
 
         protected void GameGridView_Sorting(object sender, GridViewSortEventArgs e)
@@ -94,10 +89,11 @@ namespace GameTrack1
             Session["SortColumn"] = e.SortExpression;
 
             // refresh the GridView
-            this.GetName();
+            this.GetGame();
 
             // toggle the direction
             Session["SortDirection"] = Session["SortDirection"].ToString() == "ASC" ? "DESC" : "ASC";
+
         }
 
         protected void GameGridView_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -126,16 +122,8 @@ namespace GameTrack1
                     }
                 }
             }
-        }
-
-        protected void PageSizeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // set the new Page size
-            GameGridView.PageSize = Convert.ToInt32(PageSizeDropDownList.SelectedValue);
-
-            // refresh the GridView
-            this.GetName();
 
         }
     }
+
 }

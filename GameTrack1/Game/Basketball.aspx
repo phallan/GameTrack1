@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
 
-                <h1>Student List</h1>
+                <h1>Basketball results</h1>
                 <a href="AddResult.aspx" class="btn btn-success btn-sm">
                     <i class="fa fa-plus"></i> Add result
                 </a>
@@ -14,9 +14,9 @@
                     <asp:DropDownList ID="PageSizeDropDownList" runat="server"
                         AutoPostBack="true" CssClass="btn btn-default btn-sm dropdown-toggle"
                         OnSelectedIndexChanged="PageSizeDropDownList_SelectedIndexChanged">
-                        <asp:ListItem Text="3" Value="3" />
-                        <asp:ListItem Text="5" Value="5" />
-                        <asp:ListItem Text="10" Value="10" />
+                        <asp:ListItem Text="1" Value="1" />
+                        <asp:ListItem Text="2" Value="2" />
+                        
                         <asp:ListItem Text="All" Value="10000" />
                     </asp:DropDownList>
                 </div> 
@@ -29,19 +29,19 @@
                     OnSorting="GameGridView_Sorting" OnRowDataBound="GameGridView_RowDataBound"
                     PagerStyle-CssClass="pagination-ys">
                     <Columns>
-                         <asp:BoundField DataField="name" HeaderText="Game name" Visible="true" SortExpression="name" />
-                        <asp:BoundField DataField="week" HeaderText="Week" Visible="true" SortExpression="week" />
-                        <asp:BoundField DataField="firstTeam" HeaderText="Team 1" Visible="true"  />
-                        <asp:BoundField DataField="secondTeam" HeaderText="Team 2" Visible="true" />
-                        <asp:BoundField DataField="scoreFirst" HeaderText="Team 1 Score" Visible="true" />
-                        <asp:BoundField DataField="scoreSecond" HeaderText="Team 2 Score" Visible="true" />
-                        <asp:BoundField DataField="winner" HeaderText="Winner" Visible="true" />
+                         <asp:BoundField DataField="GameName" HeaderText="Game name" Visible="true" />
+                        <asp:BoundField DataField="Week" HeaderText="Week" Visible="true" SortExpression="week" />
+                        <asp:BoundField DataField="TeamOne" HeaderText="Team 1" Visible="true"  />
+                        <asp:BoundField DataField="TeamTwo" HeaderText="Team 2" Visible="true" />
+                        <asp:BoundField DataField="ScoreOne" HeaderText="Team 1 Score" Visible="true" />
+                        <asp:BoundField DataField="ScoreTwo" HeaderText="Team 2 Score" Visible="true" />
+                        <asp:BoundField DataField="Winner" HeaderText="Winner" Visible="true" />
 
 
                         <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'></i> Edit"
                             NavigateUrl="~/Game/AddResult.aspx.cs" ControlStyle-CssClass="btn btn-primary btn-sm"
                             runat="server" DataNavigateUrlFields="name"
-                            DataNavigateUrlFormatString="AddResult.aspx?name={0}" />
+                            DataNavigateUrlFormatString="AddResult.aspx?GameName={0} & Week={1}" />
 
                         <asp:CommandField HeaderText="Delete" DeleteText="<i class='fa fa-trash-o fa-lg'></i> Delete"
                             ShowDeleteButton="true" ButtonType="Link" ControlStyle-CssClass="btn btn-danger btn-sm" />

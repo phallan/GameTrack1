@@ -3,34 +3,30 @@
        <div class="container">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
-                <h1>Student Details</h1>
+                <h1>Results</h1>
                 <h5>All Fields are required</h5>
                 <br />
 
-                <div class="form-group">
-                    <label class="control-label" for="WeekTextBox">Week</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="WeekTextBox" 
-                        placeholder="Week" required="true"></asp:TextBox>
+              
+                    <div class="form-group">
+                    <label class="control-label" for="TeamFirstTextBox">Team 1</label>
+                <asp:TextBox runat="server" CssClass="form-control" ID="TeamFirstTextBox"
+                        placeholder="my team" required="true"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="TeamFirstTextBox">Team 1</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="TeamFirstTextBox" 
-                        placeholder="my team" required="true"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="TeamSecondTextBox">Team 1</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="TeamSecondTextBox" 
-                        placeholder="my team" required="true"></asp:TextBox>
+                    <label class="control-label" for="TeamSecondTextBox">Team 2</label>
+                    <asp:TextBox runat="server" CssClass="form-control" ID="TeamSecondTextBox"
+                        placeholder="opposite team" required="true"></asp:TextBox>
                 </div>
                  <div class="form-group">
                     <label class="control-label" for="ScoreFirstTextBox">Score for Team 1</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="ScoreFirstTextBox" 
+                    <asp:TextBox runat="server" CssClass="form-control" ID="ScoreFirstTextBox"
                         placeholder="Score" required="true"></asp:TextBox>
                 </div>
                  <div class="form-group">
                     <label class="control-label" for="ScoreSecondTextBox">Score for Team 2</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="ScoreSecondTextBox" 
+                    <asp:TextBox runat="server" CssClass="form-control" ID="ScoreSecondTextBox"
                         placeholder="Score" required="true"></asp:TextBox>
                 </div>
 
@@ -46,6 +42,8 @@
                     <asp:Button Text="Save" ID="SaveButton" CssClass="btn btn-primary btn-lg" runat="server"
                         OnClick="SaveButton_Click" />
                 </div>
+
+                
             </div>
         </div>
     </div>
