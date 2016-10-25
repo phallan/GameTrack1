@@ -10,7 +10,7 @@ namespace GameTrack1.Models
     public partial class Hockey
     {
         [Key]
-        public int GameId { get; set; }
+        public int Week { get; set; }
 
         [Required]
         public string GameName { get; set; }

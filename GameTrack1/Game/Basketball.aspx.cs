@@ -17,7 +17,7 @@ namespace GameTrack1
         {
             if (!IsPostBack)
             {
-                Session["SortColumn"] = "TodoId"; // default sort column
+                Session["SortColumn"] = "Week"; // default sort column
                 Session["SortDirection"] = "ASC";
 
                 // Get data
