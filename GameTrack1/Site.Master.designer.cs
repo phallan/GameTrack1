@@ -22,15 +22,6 @@ namespace GameTrack1 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// home control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl home;
-        
-        /// <summary>
         /// PublicPlaceHolder control.
         /// </summary>
         /// <remarks>
@@ -67,22 +58,13 @@ namespace GameTrack1 {
         protected global::System.Web.UI.WebControls.PlaceHolder GamePlaceHolder;
         
         /// <summary>
-        /// menu control.
+        /// home control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
-        
-        /// <summary>
-        /// students control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl students;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl home;
         
         /// <summary>
         /// logout control.
